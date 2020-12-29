@@ -1,0 +1,22 @@
+{
+  "include": ["src/**/*", "typings/**/*"],
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "alwaysStrict": true,
+    "sourceMap": true,
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "target": "ES5",
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationDir": "./dist",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./"
+  }
+}

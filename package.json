@@ -1,6 +1,6 @@
 {
   "name": "aileen-annotation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "NodeJS Annotation Engine From Aileen Framework",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -18,7 +18,9 @@
     "url": "git+https://github.com/laohu-aileen/aileen-annotation.git"
   },
   "keywords": [
-    "Framework"
+    "Decorator",
+    "Annotation",
+    "Aileen"
   ],
   "author": "胡永强",
   "license": "MIT",
@@ -43,6 +45,7 @@
   },
   "dependencies": {
     "callsite": "^1.0.0",
-    "lodash": "^4.17.20"
+    "lodash": "^4.17.20",
+    "reflect-metadata": "^0.1.13"
   }
 }

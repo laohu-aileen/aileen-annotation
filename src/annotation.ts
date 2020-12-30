@@ -13,11 +13,16 @@ export class Annotation<T extends Object> {
   public readonly id: symbol;
 
   /**
+   * 装饰器包装
+   */
+  protected warps: Array<(option: T) => Decorator> = [];
+
+  /**
    * 创建注解实例
    */
   constructor() {
     const name = callsite()[1].getFileName();
-    this.id = Symbol.for(name);
+    this.id = Symbol(name);
   }
 
   /**
@@ -85,6 +90,11 @@ export class Annotation<T extends Object> {
       // 写入元数据
       const metas = this.getOwnerMetas(target);
       metas.unshift(data);
+
+      // 执行包装器
+      this.warps
+        .map((warp) => warp(option))
+        .map((decorator) => decorator(target, propertyKey, <any>info));
     };
   }
 
@@ -203,5 +213,13 @@ export class Annotation<T extends Object> {
         return { key, return: returnType, parameters: params };
       })
       .filter((item) => item);
+  }
+
+  /**
+   * 包装其他装饰器
+   * @param decorator
+   */
+  public warp(decorator: (option: T) => Decorator) {
+    this.warps.push(decorator);
   }
 }

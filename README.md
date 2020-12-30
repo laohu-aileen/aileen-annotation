@@ -1,5 +1,8 @@
 # aileen-anntation
 
+## 项目介绍
+该项目为 NodeJS 注解框架,用于简化注解装饰器的开发, 提供简单的注解申明,装饰器导出,以及注解目标的相关信息查看等接口。提供标准化的注解装饰器申明方式。
+
 ## 快速开始
 
 ### 安装
@@ -235,4 +238,45 @@ assert.deepEqual(res4, [
     name: "name",
   },
 ]);
+```
+
+### 包装其他注解
+```ts
+import { Annotation } from "../src/annotation";
+
+/**
+ * 测试用注解
+ */
+const anno1 = new Annotation<{
+  id?: string;
+}>();
+
+/**
+ * 测试用注解
+ */
+const anno2 = new Annotation<{
+  id?: string;
+  name?: string;
+}>();
+
+/**
+ * 包装其他注解
+ */
+anno2.warp((option) => anno1.decorator({ id: option.id }));
+
+/**
+ * 演示类
+ */
+@anno2.decorator({
+  id: "id",
+  name: "name",
+})
+class Demo {}
+
+
+const res1 = anno1.getRef(Demo);
+assert.deepEqual(res1, { id: "id" });
+
+const res2 = anno2.getRefs(Demo);
+assert.deepEqual(res2, [{ id: "id", name: "name" }]);
 ```

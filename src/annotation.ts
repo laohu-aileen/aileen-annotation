@@ -104,7 +104,7 @@ export class Annotation<T extends Object> {
    */
   public getRefs(
     target: Function | Object,
-    property?: string,
+    property?: string | symbol,
     index?: number
   ): T[] {
     return this.getMetas(target)
@@ -118,7 +118,7 @@ export class Annotation<T extends Object> {
    */
   public getRef(
     target: Function | Object,
-    property?: string,
+    property?: string | symbol,
     index?: number
   ): T {
     const meta = this.getMetas(target).find(
@@ -136,7 +136,7 @@ export class Annotation<T extends Object> {
    */
   public getRefCompose(
     target: Function | Object,
-    property?: string,
+    property?: string | symbol,
     index?: number
   ): T {
     const options = this.getRefs(target, property, index);
@@ -152,7 +152,7 @@ export class Annotation<T extends Object> {
    */
   public hasRef(
     target: Function | Object,
-    property?: string,
+    property?: string | symbol,
     index?: number
   ): boolean {
     const options = this.getRefs(target, property, index);

@@ -40,6 +40,7 @@ export class Annotation<T extends Object> {
    */
   protected getOwnerMetas(target: Function | Object): PrototypeMeta<T>[] {
     const constructor = this.getPrototype(target);
+    if (!constructor) return [];
     let metas = Reflect.getOwnMetadata(this.id, constructor);
 
     // 首次设置
@@ -53,7 +54,7 @@ export class Annotation<T extends Object> {
   }
 
   /**
-   *
+   * 获取父亲注解
    * @param target
    */
   protected getSuperMetas(target: Function | Object): PrototypeMeta<T>[] {
@@ -64,6 +65,7 @@ export class Annotation<T extends Object> {
     );
     return metas ? metas : [];
   }
+
   /**
    * 获取元数据
    * @param target

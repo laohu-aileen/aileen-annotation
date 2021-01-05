@@ -59,6 +59,7 @@ export class Annotation<T extends Object> {
    */
   protected getSuperMetas(target: Function | Object): PrototypeMeta<T>[] {
     const constructor = this.getPrototype(target);
+    if (!constructor) return [];
     const metas = Reflect.getMetadata(
       this.id,
       constructor.prototype.__proto__.constructor
